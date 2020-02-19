@@ -1,0 +1,6 @@
+body {
+  /* prevent the page refresh effect in mobile android */
+  overscroll-behavior-y: contain;
+  /* disable elastic scrolling in mobile safari */
+  overflow: hidden;
+}
