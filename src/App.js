@@ -1,24 +1,24 @@
 import React, { Component } from "react";
-
-import { UIEvent, PhotoEditorSDKUI } from "photoeditorsdk";
+import { PhotoEditorSDKUI } from "photoeditorsdk";
 
 class App extends Component {
-  /** If this config is changed the it will always override the control gui settings */
+  editor = null;
+
   config = {
     image:
       "https://static.photoeditorsdk.com/libraries/unsplash/raw/PZAxzN5DPkc.jpg",
+    assetBaseUrl: "https://imgly.github.io/pesdk-html5/assets/",
     engine: {
       license: ""
     },
     library: {
       enableUpload: true,
-      enableWebcam: true,
+      enableWebcam: true
     }
   };
 
-  editor = null;
   componentDidMount() {
-    this.init();
+    this.initEditor(this.config);
   }
 
   exportfn = () => {
@@ -27,30 +27,10 @@ class App extends Component {
     });
   };
 
-  init() {
-    /** Example of loading alocal image  */
-    if (this.loadingLocalImage) {
-      const image = new Image();
-      image.onload = () => {
-        this.config.image = image;
-        this.initEditor();
-      };
-      image.src = "./example.png";
-    } else {
-      this.initEditor();
-    }
-  }
-
-  initEditor() {
+  initEditor(config) {
     this.editor = new PhotoEditorSDKUI({
-      ...this.config,
+      ...config,
       container: document.getElementById("container")
-    });
-    this.editor.on(UIEvent.EDITOR_READY, () => {
-      // console.log('Editor is ready')
-    });
-    this.editor.on(UIEvent.EXPORT, imageSrc => {
-      // console.log('exported', imageSrc)
     });
   }
 
