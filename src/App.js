@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { PhotoEditorSDKUI } from "../pesdkBuild/photoeditorsdk/";
+import { custom } from "./customconf";
 
 class App extends Component {
   editor = null;
@@ -85,7 +86,8 @@ class App extends Component {
           ]
         }
       ]
-    }
+    },
+    custom,
   };
 
   componentDidMount() {
